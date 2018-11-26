@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+$(document).ready(function(){
+	$("#btnAdminUsuarios").click(function(){
+		 $("#accion").val("0");
+	});
+	$("#btnAdminProductos").click(function(){
+		 $("#accion2").val("0");
+	});
+	$("#btnInventarioProductos").click(function(){
+		 $("#accion3").val("0");
+	});
+	$("#btnVentas").click(function(){
+		 $("#accion4").val("0");
+	});
+});

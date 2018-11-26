@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+<head>
+	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
+</head>
+<script type="text/javascript" language="JavaScript">
+
+	function cargando() {
+		document.getElementById("usuario").focus();
+	}
+	
+	function validateDatos() {
+		var usuario = document.getElementById("usuario");
+		var password = document.getElementById("password"); 
+		if(usuario.value==null || usuario.value==""){
+			alert('Ingresa tu usuario');
+			usuario.focus();
+			return false;
+		}
+		if(password.value==null || password.value==""){
+			alert('Ingresa tu password');
+			password.focus();
+			return false;
+		}
+	}
+
+</script>
+<BODY style='margin-top:10px;margin-bottom:10px;overflow:hidden' onload="cargando();">
+	
+	<div id="banner"><h1 align="center" style="font-weight: bold;" >PRUEBA TÉCNICA TODO1</h1></div>
+	<form action="loginweb.jr" method="POST" onsubmit="return validateDatos();">
+		<table align="center" style="font-weight: bold;">
+			<tr>
+				<td colspan="2">Ingresa tus datos</td>
+			</tr>
+			<tr>
+				<td>Usuario: </td>
+				<td> <input type="text" name="usuario" id="usuario"> </td>
+			</tr>
+			<tr>
+				<td>Password: </td>
+				<td> <input type="password" name="password" id="password"> </td>
+			</tr>
+			<tr>
+				<td> <input type="button" value="Cancelar"> </td>
+				<td> <input type="submit" value="Aceptar"> </td>
+			</tr>
+		</table>
+	</form>
+</BODY>
+</HTML>

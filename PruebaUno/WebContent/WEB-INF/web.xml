@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name>PruebaUno</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>login.html</welcome-file>
+	</welcome-file-list>
+	
+	<servlet>
+		<description></description>
+		<display-name>LoginServlet</display-name>
+		<servlet-name>loginServlet</servlet-name>
+		<servlet-class>com.pruebauno.jsps.servlets.LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>loginServlet</servlet-name>
+		<url-pattern>/loginweb.jr</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<description></description>
+		<display-name>UsuarioGrabarServlet</display-name>
+		<servlet-name>usuarioGrabarServlet</servlet-name>
+		<servlet-class>com.pruebauno.jsps.servlets.UsuarioGrabarServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>usuarioGrabarServlet</servlet-name>
+		<url-pattern>/usuario.jr</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<description></description>
+		<display-name>ProductosServlet</display-name>
+		<servlet-name>productosServlet</servlet-name>
+		<servlet-class>com.pruebauno.jsps.servlets.ProductosServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>productosServlet</servlet-name>
+		<url-pattern>/productos.jr</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<description></description>
+		<display-name>InventarioProductoServlet</display-name>
+		<servlet-name>inventarioProductoServlet</servlet-name>
+		<servlet-class>com.pruebauno.jsps.servlets.InventarioProductoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>inventarioProductoServlet</servlet-name>
+		<url-pattern>/inventarioproducto.jr</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<description></description>
+		<display-name>VentasServlet</display-name>
+		<servlet-name>ventasServlet</servlet-name>
+		<servlet-class>com.pruebauno.jsps.servlets.VentasServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ventasServlet</servlet-name>
+		<url-pattern>/ventas.jr</url-pattern>
+	</servlet-mapping>
+	
+</web-app>
