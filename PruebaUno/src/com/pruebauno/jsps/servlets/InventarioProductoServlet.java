@@ -55,8 +55,6 @@ public class InventarioProductoServlet extends HttpServlet {
 					request.setAttribute("usuarioDto", new UsuarioDTO());
 				}
 				inventarioProductoDTO = InventarioProductoBusiness.getInstance().consultarInventarioProducto();
-				System.err.println("InventarioProductoServlet >>> consultar >>> getListaInventarioProducto: "+inventarioProductoDTO.getListaInventarioProducto().size());
-				System.err.println("InventarioProductoServlet >>> consultar >>> getListaProductos: "+inventarioProductoDTO.getListaProductos().size());
 				request.setAttribute("listaInventarioProducto", inventarioProductoDTO.getListaInventarioProducto());
 				request.setAttribute("listaProductos", inventarioProductoDTO.getListaProductos());
 				request.setAttribute("password", password);

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.pruebauno.jsps.business.UsuarioBusiness;
 import com.pruebauno.jsps.dto.UsuarioDTO;
 
@@ -16,6 +18,8 @@ import com.pruebauno.jsps.dto.UsuarioDTO;
 //@WebServlet("/loginweb.jr")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static String passwordGlobal = "password";
+	private static Logger log = Logger.getLogger("todo1");
 
     /**
      * Default constructor. 
@@ -35,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String documento = request.getParameter("usuario");
-		String password = request.getParameter("password");
+		String password = request.getParameter(passwordGlobal);
 		
 		UsuarioDTO usuarioDto = new UsuarioDTO();
 		try{
@@ -43,17 +47,17 @@ public class LoginServlet extends HttpServlet {
 			if(usuarioDto.getIdUsuario()>0){
 				
 				request.setAttribute("usuarioDto", usuarioDto);
-				request.setAttribute("password", password);
+				request.setAttribute(passwordGlobal, password);
 				request.setAttribute("documento", documento);
 				request.getRequestDispatcher("welcome.jsp").forward(request, response);
 			}else{
 				request.setAttribute("usuario", documento);
-				request.setAttribute("password", password);
+				request.setAttribute(passwordGlobal, password);
 				request.getRequestDispatcher("errorLogueo.jsp").forward(request, response);
 			}
 		}catch(Exception e){
+			log.error("LoginServlet >>> doPost: "+e.getMessage());
 			request.getRequestDispatcher("login.html").forward(request, response);
-			e.printStackTrace();
 		}
 		
 	}

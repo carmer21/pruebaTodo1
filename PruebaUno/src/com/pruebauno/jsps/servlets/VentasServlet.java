@@ -58,8 +58,8 @@ public class VentasServlet extends HttpServlet {
 				request.setAttribute("password", password);
 				request.getRequestDispatcher("ventas.jsp").forward(request, response);
 			}catch(Exception e){
-				request.getRequestDispatcher("login.html").forward(request, response);
 				log.error("VentasServlet >>> doPost-0: "+e.getMessage());
+				request.getRequestDispatcher("login.html").forward(request, response);
 			}
 		}
 		if(accion!=null && !accion.equals("") &&  accion.equals("1")){

@@ -83,7 +83,7 @@ public class UsuarioGrabarServlet extends HttpServlet {
 					request.getRequestDispatcher("login.html").forward(request, response);
 				}
 			}catch(Exception e){
-				log.error("InventarioProductoServlet >>> doPost-0: "+e.getMessage());
+				log.error("UsuarioGrabarServlet >>> doPost-0: "+e.getMessage());
 				request.getRequestDispatcher("login.html").forward(request, response);
 			}
 		}
@@ -124,8 +124,8 @@ public class UsuarioGrabarServlet extends HttpServlet {
 					offset += size;
 				} while( offset<length );
 			}catch(Exception e){
+				log.error("UsuarioGrabarServlet >>> doPost-1: "+e.getMessage());
 				request.getRequestDispatcher("welcome.jsp").forward(request, response);
-				e.printStackTrace();
 			} finally {
 				out.flush();
 				out.close();
@@ -157,8 +157,8 @@ public class UsuarioGrabarServlet extends HttpServlet {
 					offset += size;
 				} while( offset<length );
 			}catch(Exception e){
+				log.error("UsuarioGrabarServlet >>> doPost-2: "+e.getMessage());
 				request.getRequestDispatcher("welcome.jsp").forward(request, response);
-				e.printStackTrace();
 			} finally {
 				out.flush();
 				out.close();

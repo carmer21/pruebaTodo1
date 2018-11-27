@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.pruebauno.jsps.business.ProductosBusiness;
 import com.pruebauno.jsps.business.UsuarioBusiness;
 import com.pruebauno.jsps.dto.ProductosDTO;
@@ -19,6 +21,7 @@ import com.pruebauno.jsps.dto.UsuarioDTO;
 //@WebServlet("/productos.jr")
 public class ProductosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger log = Logger.getLogger("todo1");
 
     /**
      * Default constructor. 
@@ -56,8 +59,8 @@ public class ProductosServlet extends HttpServlet {
 				request.setAttribute("password", password);
 				request.getRequestDispatcher("productos.jsp").forward(request, response);
 			}catch(Exception e){
+				log.error("ProductosServlet >>> doPost-0: "+e.getMessage());
 				request.getRequestDispatcher("login.html").forward(request, response);
-				e.printStackTrace();
 			}
 		}
 		if(accion!=null && !accion.equals("") &&  accion.equals("1")){
@@ -89,8 +92,8 @@ public class ProductosServlet extends HttpServlet {
 					offset += size;
 				} while( offset<length );
 			}catch(Exception e){
+				log.error("ProductosServlet >>> doPost-1: "+e.getMessage());
 				request.getRequestDispatcher("welcome.jsp").forward(request, response);
-				e.printStackTrace();
 			} finally {
 				out.flush();
 				out.close();
@@ -122,8 +125,8 @@ public class ProductosServlet extends HttpServlet {
 					offset += size;
 				} while( offset<length );
 			}catch(Exception e){
+				log.error("ProductosServlet >>> doPost-2: "+e.getMessage());
 				request.getRequestDispatcher("welcome.jsp").forward(request, response);
-				e.printStackTrace();
 			} finally {
 				out.flush();
 				out.close();

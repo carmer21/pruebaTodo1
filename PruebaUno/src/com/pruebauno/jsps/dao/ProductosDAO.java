@@ -38,6 +38,8 @@ public class ProductosDAO {
 		Connection conn = null;
         ResultSet rs = null;
         ResultSet rs2 = null;
+        Statement st = null;
+        Statement st2 = null;
         ProductosDTO productosDTO = new ProductosDTO();
         String sql = " SELECT ID_PRODUCTO,CODIGO,TIPO,NOMBRE FROM PRODUCTOS_TODO1; ";
 		String sqlTipos = " SELECT ID_TIPOS_PRODUCTOS,TIPO FROM TIPOS_PRODUCTOS_TODO1; ";
@@ -45,7 +47,7 @@ public class ProductosDAO {
 		    Class.forName(myDriver);
 		    conn = DriverManager.getConnection(myUrl, "root", "");
 		    // create the java statement
-		    Statement st = conn.createStatement();
+		    st = conn.createStatement();
 		    // execute the query, and get a java resultset
 		    rs = st.executeQuery(sql);
 		    ArrayList<ProductosDTO> lista = new ArrayList<ProductosDTO>();
@@ -59,7 +61,7 @@ public class ProductosDAO {
             }
             
             // create the java statement
-		    Statement st2 = conn.createStatement();
+		    st2 = conn.createStatement();
 		    // execute the query, and get a java resultset
 		    rs2 = st2.executeQuery(sqlTipos);
 		    ArrayList<TiposProductosDTO> listaTiposProductos = new ArrayList<TiposProductosDTO>();
@@ -82,19 +84,26 @@ public class ProductosDAO {
         	
         	if(rs!=null)
         		rs.close();
+        	
+        	if(rs!=null)
+        		rs.close();
+        	
+        	if(st2!=null)
+        		st2.close();
         }
 	}
 	
 	public int grabarProducto(ProductosDTO productosDTO) throws SQLException, ClassNotFoundException{
 		Connection conn = null;
         int grabar = 0;
+        Statement st = null;
         String sql = " INSERT INTO PRODUCTOS_TODO1(CODIGO,TIPO,NOMBRE,FECHA_CREACION)VALUES( '"
 				+productosDTO.getCodigo()+"','"+productosDTO.getTipo()+"','"+productosDTO.getNombre()+"',SYSDATE()); ";
 		try {
 		    Class.forName(myDriver);
 		    conn = DriverManager.getConnection(myUrl, "root", "");
 		    // create the java statement
-		    Statement st = conn.createStatement();
+		    st = conn.createStatement();
 		    // execute the query
 		    st.executeQuery(sql);
         } catch(SQLException sqle){
@@ -104,6 +113,9 @@ public class ProductosDAO {
         }finally {
         	if(conn!=null)
         		conn.close();
+        	
+        	if(st!=null)
+        		st.close();
         }
 		return grabar;
 	}
@@ -111,12 +123,13 @@ public class ProductosDAO {
 	public int eliminarProductos(int idProducto) throws SQLException, ClassNotFoundException{
 		Connection conn = null;
         int eliminar = 0;
+        Statement st = null;
         String sql = " DELETE FROM PRODUCTOS_TODO1 WHERE ID_PRODUCTO = "+idProducto+"; ";
 		try {
 		    Class.forName(myDriver);
 		    conn = DriverManager.getConnection(myUrl, "root", "");
 		    // create the java statement
-		    Statement st = conn.createStatement();
+		    st = conn.createStatement();
 		    // execute the query
 		    st.executeQuery(sql);
         } catch(SQLException sqle){
@@ -126,6 +139,9 @@ public class ProductosDAO {
         }finally {
         	if(conn!=null)
         		conn.close();
+        	
+        	if(st!=null)
+        		st.close();
         }
 		return eliminar;
 	}

@@ -37,6 +37,7 @@ public class UsuarioDAO {
 		Connection conn = null;
         ResultSet rs = null;
         ResultSet rs2 = null;
+        Statement st = null;
         UsuarioDTO objUsuarioDTO = new UsuarioDTO();
 		try {
 			String sql = " SELECT ID_USUARIO,TIPO_DOCUMENTO,DOCUMENTO,NOMBRES,APELLIDOS,CARGO FROM USUARIOS_TODO1 WHERE DOCUMENTO = '"+user+"' AND PASSWORD = '"+pass+"'; ";
@@ -44,7 +45,7 @@ public class UsuarioDAO {
 		    Class.forName(myDriver);
 		    conn = DriverManager.getConnection(myUrl, "root", "");
 		    // create the java statement
-		    Statement st = conn.createStatement();
+		    st = conn.createStatement();
 		    // execute the query, and get a java resultset
 		    rs = st.executeQuery(sql);
             while(rs.next()){
@@ -83,19 +84,23 @@ public class UsuarioDAO {
         	
         	if(rs2!=null)
         		rs2.close();
+        	
+        	if(st!=null)
+        		st.close();
         }
 	}
 	
 	public int grabarUsuario(UsuarioDTO usuarioDTO) throws SQLException, ClassNotFoundException{
 		Connection conn = null;
         int grabar = 0;
+        Statement st = null;
 		try {
 			String sql = " INSERT INTO USUARIOS_TODO1(TIPO_DOCUMENTO,DOCUMENTO,NOMBRES,APELLIDOS,CARGO,PASSWORD,FECHA_CREACION)VALUES( '"
 				+usuarioDTO.getTipoDocumento()+"','"+usuarioDTO.getDocumento()+"','"+usuarioDTO.getNombres()+"','"+usuarioDTO.getApellidos()+"','"+usuarioDTO.getCargo()+"',123456,SYSDATE()); ";
 		    Class.forName(myDriver);
 		    conn = DriverManager.getConnection(myUrl, "root", "");
 		    // create the java statement
-		    Statement st = conn.createStatement();
+		    st = conn.createStatement();
 		    // execute the query
 		    st.executeQuery(sql);
         } catch(SQLException sqle){
@@ -105,6 +110,9 @@ public class UsuarioDAO {
         }finally {
         	if(conn!=null)
         		conn.close();
+        	
+        	if(st!=null)
+        		st.close();
         }
 		return grabar;
 	}
@@ -112,12 +120,13 @@ public class UsuarioDAO {
 	public int eliminarUsuario(int idUsuario) throws SQLException, ClassNotFoundException{
 		Connection conn = null;
         int eliminar = 0;
+        Statement st = null;
+        String sql = " DELETE FROM USUARIOS_TODO1 WHERE ID_USUARIO = "+idUsuario+"; ";
 		try {
-			String sql = " DELETE FROM USUARIOS_TODO1 WHERE ID_USUARIO = "+idUsuario+"; ";
 		    Class.forName(myDriver);
 		    conn = DriverManager.getConnection(myUrl, "root", "");
 		    // create the java statement
-		    Statement st = conn.createStatement();
+		    st = conn.createStatement();
 		    // execute the query
 		    st.executeQuery(sql);
         } catch(SQLException sqle){
@@ -127,6 +136,9 @@ public class UsuarioDAO {
         }finally {
         	if(conn!=null)
         		conn.close();
+        	
+        	if(st!=null)
+        		st.close();
         }
 		return eliminar;
 	}
